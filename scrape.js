@@ -6,8 +6,8 @@ const figlet = require('figlet')
 
 const maxstreams = 8
 const dataDir = 'data'
-
-const market = 'bitstampUSD'
+  
+const market = 'cex'.concat(process.argv.slice(2));
 
 const dates = {
   from: {
