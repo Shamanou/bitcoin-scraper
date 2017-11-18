@@ -5,9 +5,9 @@ const chalk = require('chalk')
 const figlet = require('figlet')
 
 const maxstreams = 8
-const dataDir = 'data'
+const dataDir = __dirname.concat('/data')
   
-const market = 'cex'.concat(process.argv.slice(2));
+const market = 'cex'.concat(process.argv.slice(2))
 
 const dates = {
   from: {
