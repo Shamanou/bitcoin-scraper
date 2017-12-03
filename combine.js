@@ -35,7 +35,7 @@ fs.readdir(dataDir, (err, list) => {
 		
 		
 		try {
-			date = new Date(file.split('cex'.concat(process.argv.slice(3).concat('-'))[1].split('.json')[0])
+			date = new Date(file.split('cex'.concat(process.argv.slice(3).concat('-'))[1].split('.json')[0]))
 			time = date.getTime()
 		} catch (err) {
 			return
