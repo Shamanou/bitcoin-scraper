@@ -3,7 +3,6 @@ const fs = require('fs')
 const path = require('path')
 const chalk = require('chalk')
 const figlet = require('figlet')
-const json2csv = require('json2csv');
 const outputFile = process.argv.slice(2)[0]
 const dataDir = 'data/'
 
@@ -73,7 +72,11 @@ fs.readdir(dataDir, (err, list) => {
 		process.stdout.write('.')
 	})
 
-	const outputData = json2csv({data: combinedData, fields: fields})
+    var outputData = '';
+    for(var i = 0; i < combinedData.length ; i++){
+        outputData += combinedData[i][0] + "," + combinedData[i][2] + "\n
+    }
+
 
 	fs.writeFile(outputFile, outputData, 'utf8', err => {
 		process.stdout.write('\n')
