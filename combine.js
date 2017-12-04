@@ -74,7 +74,7 @@ fs.readdir(dataDir, (err, list) => {
 
     var outputData = '';
     for(var i = 0; i < combinedData.length ; i++){
-        outputData += combinedData[i][0] + "," + combinedData[i][2] + "\n";
+        outputData += combinedData[i][0] + "," + combinedData[i][1] + "\n";
     }
 
 
