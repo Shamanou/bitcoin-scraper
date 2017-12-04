@@ -3,7 +3,7 @@ const fs = require('fs')
 const path = require('path')
 const chalk = require('chalk')
 const figlet = require('figlet')
-
+const json2csv = require('json2csv');
 const outputFile = process.argv.slice(2)[0]
 const dataDir = 'data/'
 
@@ -57,7 +57,7 @@ fs.readdir(dataDir, (err, list) => {
 	let combinedData = []
 
 	process.stdout.write('\n')
-
+	var fields = ['buy','sell'];
 	files.forEach(day => {
 		const filePath = path.join(dataDir, day.file)
 		const contents = fs.readFileSync(path.join(__dirname, filePath)).toString()
@@ -67,12 +67,13 @@ fs.readdir(dataDir, (err, list) => {
 			// const prettyDate = day.date.toString().split(':')[0].substr(0, 15)
 			// const usd = '$' + data[0][7]
 			// console.log(chalk.yellow(prettyDate), chalk.red(usd))
-			combinedData = combinedData.concat(data)
+			var d = data.map(function(value,index){ return [value[2], value[3]]; })
+			combinedData = combinedData.concat(d)
 		}
 		process.stdout.write('.')
 	})
 
-	const outputData = JSON.stringify(combinedData)
+	const outputData = json2csv({data: combinedData, fields: fields})
 
 	fs.writeFile(outputFile, outputData, 'utf8', err => {
 		process.stdout.write('\n')
